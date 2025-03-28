@@ -1,12 +1,22 @@
 from django.shortcuts import render
 from category.models import *
+from product.models import *
+from django.db.models import Prefetch
+
+
 
 def main(request):
     categories = Category.objects.filter(is_main=True)
     regions = Region.objects.all()
+    products = Product.objects.prefetch_related(
+        Prefetch('images', queryset=ProductImage.objects.filter(is_main=True), to_attr='main_images')).all()
+
+
     ctx = {
         "categories": categories,
-        "regions":regions
+        "regions":regions,
+        "products":products,
+
     }
 
 

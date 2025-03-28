@@ -52,8 +52,13 @@
                         <a class="google" href="#"><i class="lni-google-plus"></i></a>
                     </div>
                     <div class="header-top-right float-right">
-                        <a href="login.html" class="header-top-button"><i class="lni-lock"></i> Log In</a> |
-                        <a href="register.html" class="header-top-button"><i class="lni-pencil"></i> Register</a>
+                        {% if user.is_authenticated %}
+                        <a href class="header-top-button"><i class="lni-lock"></i>{{ user }}</a> |
+                        <a href="{% url 'logout' %}" class="header-top-button"><i class="lni-logout"></i> Log Out</a>
+                        {% else %}
+                        <a href="{% url 'login'%}" class="header-top-button"><i class="lni-lock"></i> Log In</a> |
+                        <a href="{% url 'register' %}" class="header-top-button"><i class="lni-pencil"></i> Register</a>
+                        {% endif  %}
                     </div>
                 </div>
             </div>
@@ -87,44 +92,44 @@
                         </a>
 
                     </li>
+<!--                    <li class="nav-item dropdown">-->
+<!--                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"-->
+<!--                           aria-expanded="false">-->
+<!--                            Listings-->
+<!--                        </a>-->
+<!--                        <div class="dropdown-menu">-->
+<!--                            <a class="dropdown-item" href="adlistinggrid.html">Ad Grid</a>-->
+<!--                            <a class="dropdown-item" href="adlistinglist.html">Ad Listing</a>-->
+<!--                            <a class="dropdown-item" href="ads-details.html">Listing Detail</a>-->
+<!--                        </div>-->
+<!--                    </li>-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false">
-                            Listings
+                            Services
                         </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="adlistinggrid.html">Ad Grid</a>
-                            <a class="dropdown-item" href="adlistinglist.html">Ad Listing</a>
-                            <a class="dropdown-item" href="ads-details.html">Listing Detail</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false">
-                            Pages
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="about.html">About Us</a>
-                            <a class="dropdown-item" href="services.html">Services</a>
-                            <a class="dropdown-item" href="ads-details.html">Ads Details</a>
-                            <a class="dropdown-item" href="post-ads.html">Ads Post</a>
-                            <a class="dropdown-item" href="pricing.html">Packages</a>
-                            <a class="dropdown-item" href="testimonial.html">Testimonial</a>
-                            <a class="dropdown-item" href="faq.html">FAQ</a>
-                            <a class="dropdown-item" href="404.html">404</a>
-                        </div>
+<!--                        <div class="dropdown-menu">-->
+<!--                            <a class="dropdown-item" href="about.html">About Us</a>-->
+<!--                            <a class="dropdown-item" href="services.html">Services</a>-->
+<!--                            <a class="dropdown-item" href="ads-details.html">Ads Details</a>-->
+<!--                            <a class="dropdown-item" href="post-ads.html">Ads Post</a>-->
+<!--                            <a class="dropdown-item" href="pricing.html">Packages</a>-->
+<!--                            <a class="dropdown-item" href="testimonial.html">Testimonial</a>-->
+<!--                            <a class="dropdown-item" href="faq.html">FAQ</a>-->
+<!--                            <a class="dropdown-item" href="404.html">404</a>-->
+<!--                        </div>-->
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false">
                             Blog
                         </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="blog.html">Blog - Right Sidebar</a>
-                            <a class="dropdown-item" href="blog-left-sidebar.html">Blog - Left Sidebar</a>
-                            <a class="dropdown-item" href="blog-grid-full-width.html"> Blog full width </a>
-                            <a class="dropdown-item" href="single-post.html">Blog Details</a>
-                        </div>
+<!--                        <div class="dropdown-menu">-->
+<!--                            <a class="dropdown-item" href="blog.html">Blog - Right Sidebar</a>-->
+<!--                            <a class="dropdown-item" href="blog-left-sidebar.html">Blog - Left Sidebar</a>-->
+<!--                            <a class="dropdown-item" href="blog-grid-full-width.html"> Blog full width </a>-->
+<!--                            <a class="dropdown-item" href="single-post.html">Blog Details</a>-->
+<!--                        </div>-->
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">
