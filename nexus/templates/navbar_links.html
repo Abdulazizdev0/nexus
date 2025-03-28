@@ -81,11 +81,19 @@
             </div>
             <div class="collapse navbar-collapse" id="main-navbar">
                 <ul class="navbar-nav mr-auto w-100 justify-content-center">
+                    {% if main == 'main' %}
                     <li class="nav-item active">
                         <a class="nav-link dropdown-toggle" href="{% url 'main' %}" >
                             Home
                         </a>
                     </li>
+                    {% else %}
+                      <li class="nav-item ">
+                        <a class="nav-link dropdown-toggle" href="{% url 'main' %}" >
+                            Home
+                        </a>
+                    </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="{%  url 'product-list'  %}">
                             Products
@@ -112,7 +120,7 @@
 <!--                            <a class="dropdown-item" href="about.html">About Us</a>-->
 <!--                            <a class="dropdown-item" href="services.html">Services</a>-->
 <!--                            <a class="dropdown-item" href="ads-details.html">Ads Details</a>-->
-<!--                            <a class="dropdown-item" href="post-ads.html">Ads Post</a>-->
+<!--                            <a class="dropdown-item" href="product_add.html">Ads Post</a>-->
 <!--                            <a class="dropdown-item" href="pricing.html">Packages</a>-->
 <!--                            <a class="dropdown-item" href="testimonial.html">Testimonial</a>-->
 <!--                            <a class="dropdown-item" href="faq.html">FAQ</a>-->
@@ -138,7 +146,7 @@
                     </li>
                 </ul>
                 <div class="post-btn">
-                    <a class="btn btn-common" href="post-ads.html"><i class="lni-pencil-alt"></i> Post an Ad</a>
+                    <a class="btn btn-common" href="{% url 'product_add' %}"><i class="lni-pencil-alt"></i> Post an Ad</a>
                 </div>
             </div>
         </div>
