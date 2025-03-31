@@ -2,6 +2,8 @@ from django.shortcuts import render
 from category.models import *
 from product.models import *
 from django.db.models import Prefetch
+from hitcount.views import HitCountDetailView, HitCountMixin
+from hitcount.utils import get_hitcount_model
 
 
 
@@ -10,12 +12,19 @@ def main(request):
     regions = Region.objects.all()
     products = Product.objects.prefetch_related(
         Prefetch('images', queryset=ProductImage.objects.filter(is_main=True), to_attr='main_images')).all()
+    hits = {}
+    for product in products:
+        hit_count = get_hitcount_model().objects.get_for_object(product)
+        hits[product.id] = hit_count.hits  # Har bir mahsulot uchun hitcount saqlaymiz
 
-
+        hit_count_response = HitCountMixin.hit_count(request, hit_count)  # Har bir mahsulot uchun hitni oshiramiz
+        if hit_count_response.hit_counted:
+            hits[product.id] += 1
     ctx = {
         "categories": categories,
         "regions":regions,
         "products":products,
+        "hits":hits
 
     }
 

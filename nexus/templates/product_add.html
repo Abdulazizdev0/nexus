@@ -28,15 +28,21 @@
             <div class="col-sm-12 col-md-4 col-lg-3 page-sidebar">
                 <aside>
                     <div class="sidebar-box">
-                        <div class="user">
+                        {% for profil in profiles %}
+                           <div class="user">
                             <figure>
-                                <a href="#"><img src="assets/img/author/img1.jpg" alt=""></a>
+
+                                   <a href="#"><img src="/images/{{ profil.main_images.0.image }}" alt=""></a>
+
                             </figure>
                             <div class="usercontent">
-                                <h3>Hello William!</h3>
-                                <h4>Administrator</h4>
+
+                                   <h3>Hello {{ profil.user }}!</h3>
+
+                                   <h4>Administrator</h4>
                             </div>
                         </div>
+                        {% endfor %}
                         <nav class="navdashboard">
                             <ul>
                                 <li>
@@ -106,134 +112,55 @@
                                 <h2 class="dashbord-title">Ad Detail</h2>
                             </div>
                             <div class="dashboard-wrapper">
-                                <div class="form-group mb-3">
-                                    <label class="control-label">Project Title</label>
-                                    <input class="form-control input-md" name="Title" placeholder="Title" type="text">
-                                </div>
-                                <div class="form-group mb-3 tg-inputwithicon">
-                                    <label class="control-label">Categories</label>
-                                    <div class="tg-select form-control">
-                                        <select>
-                                            <option value="none">Select Categories</option>
-                                            {% for category in categories %}
-                                            <option value="none">{{ category.name }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label class="control-label">Price Title</label>
-                                    <input class="form-control input-md" name="price" placeholder="Ad your Price"
-                                           type="text">
-                                    <div class="tg-checkbox mt-3">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="tg-priceoncall">
-                                            <label class="custom-control-label" for="tg-priceoncall">Price On
-                                                Call</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group md-3">
-                                    <section id="editor">
-                                        <div id="summernote">
-                                        </div>
-                                    </section>
-                                </div>
-                                <label class="tg-fileuploadlabel" for="tg-photogallery">
-                                    <span>Drop files anywhere to upload</span>
-                                    <span>Or</span>
-                                    <span class="btn btn-common">Select Files</span>
-                                    <span>Maximum upload file size: 500 KB</span>
-                                    <input id="tg-photogallery" class="tg-fileinput" type="file" name="file">
-                                </label>
+                                 <form method="post" enctype="multipart/form-data">
+                                     {% csrf_token %}
+
+                                     <div class="form-group mb-3">
+                                <label class="control-label">Product Title</label>
+                                {{ form.title }}
+                            </div>
+
+                                     <div class="form-group mb-3">
+                                <label class="control-label">Product Description</label>
+                                {{ form.description }}
+                            </div>
+
+                                     <div class="form-group mb-3 tg-inputwithicon">
+                                <label class="control-label">Category</label>
+                                {{ form.category }}
+                            </div>
+
+                                     <div class="form-group mb-3 tg-inputwithicon">
+                                <label class="control-label">Brand</label>
+                                {{ form.brand }}
+                            </div>
+
+                                     <div class="form-group mb-3">
+                                <label class="control-label">Condition</label>
+                                {{ form.condition }}
+                            </div>
+
+                                     <div class="form-group mb-3">
+                                <label class="control-label">Price</label>
+                                {{ form.price }}
+                            </div>
+
+                                     <div class="form-group md-3">
+                                <label>Upload Images</label>
+                                {{ formset.management_form }}
+                                {% for form in formset %}
+                                    <div class="mb-2">{{ form.image }}</div>
+                                {% endfor %}
+                            </div>
+
+                                     <div class="text-center">
+                                <button class="btn btn-common log-btn" type="submit">Add Product</button>
+                            </div>
+                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
-                        <div class="inner-box">
-                            <div class="tg-contactdetail">
-                                <div class="dashboard-box">
-                                    <h2 class="dashbord-title">Contact Detail</h2>
-                                </div>
-                                <div class="dashboard-wrapper">
-                                    <div class="form-group mb-3">
-                                        <strong>I’m a:</strong>
-                                        <div class="tg-selectgroup">
-<span class="tg-radio">
-<input id="tg-sameuser" type="radio" name="usertype" value="same user" checked="">
-<label for="tg-sameuser">Same User</label>
-</span>
-                                            <span class="tg-radio">
-<input id="tg-someoneelse" type="radio" name="usertype" value="someone else">
-<label for="tg-someoneelse">Someone Else</label>
-</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label class="control-label">First Name*</label>
-                                        <input class="form-control input-md" name="name" type="text">
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label class="control-label">Last Name*</label>
-                                        <input class="form-control input-md" name="name" type="text">
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label class="control-label">Phone*</label>
-                                        <input class="form-control input-md" name="phone" type="text">
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label class="control-label">Enter Address</label>
-                                        <input class="form-control input-md" name="address" type="text">
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label class="control-label">Enter Address</label>
-                                        <input class="form-control input-md" name="address" type="text">
-                                    </div>
-                                    <div class="form-group mb-3 tg-inputwithicon">
-                                        <label class="control-label">Country</label>
-                                        <div class="tg-select form-control">
-                                            <select>
-                                                <option value="none">Select Country</option>
-                                                {% for region in regions %}
-                                                <option value="none">{{ region.name }}</option>
-                                                {% endfor %}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-3 tg-inputwithicon">
-                                        <label class="control-label">State</label>
-                                        <div class="tg-select form-control">
-                                            <select>
-                                                <option value="none">Select State</option>
-                                                <option value="none">Select State</option>
-                                                <option value="none">Select State</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-3 tg-inputwithicon">
-                                        <label class="control-label">City</label>
-                                        <div class="tg-select form-control">
-                                            <select>
-                                                <option value="none">Select City</option>
-                                                <option value="none">Select City</option>
-                                                <option value="none">Select City</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="tg-checkbox">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input"
-                                                   id="tg-agreetermsandrules">
-                                            <label class="custom-control-label" for="tg-agreetermsandrules">I agree to
-                                                all <a href="javascript:void(0);">Terms of Use &amp; Posting
-                                                    Rules</a></label>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-common" type="button">Post Ad</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
