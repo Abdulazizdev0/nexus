@@ -1,0 +1,119 @@
+{% extends 'user_dashboard/dashboard_navbar_links.html' %}
+
+{% block header %}
+
+
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="product-title">Post you Ads</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home /</a></li>
+                        <li class="current">Post you Ads</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="content" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-3 page-sidebar">
+                <aside>
+
+                    <div class="sidebar-box">
+                        <div class="user">
+                            <figure>
+                                <a href="#"><img src="assets/img/author/img1.jpg" alt=""></a>
+                            </figure>
+                            <div class="usercontent">
+                                <h3>Hello William!</h3>
+                                <h4>Administrator</h4>
+                            </div>
+                        </div>
+
+                        {% block navbar %}
+                        {% endblock navbar %}
+
+                    </div>
+                    <div class="widget">
+                        <h4 class="widget-title">Advertisement</h4>
+                        <div class="add-box">
+                            <img class="img-fluid" src="assets/img/img1.jpg" alt="">
+                        </div>
+                    </div>
+
+                </aside>
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-9">
+                <div class="row page-content">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+                        <div class="inner-box">
+                            <div class="dashboard-box">
+                                <h2 class="dashbord-title">Ad Detail</h2>
+                            </div>
+                            <div class="dashboard-wrapper">
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+
+                                    <div class="form-group mb-3">
+                                        <label class="control-label">Product Title</label>
+                                        {{ form.title }}
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label class="control-label">Product Description</label>
+                                        {{ form.description }}
+                                    </div>
+
+                                    <div class="form-group mb-3 tg-inputwithicon">
+                                        <label class="control-label">Category</label>
+                                        {{ form.category }}
+                                    </div>
+
+                                    <div class="form-group mb-3 tg-inputwithicon">
+                                        <label class="control-label">Brand</label>
+                                        {{ form.brand }}
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label class="control-label">Condition</label>
+                                        {{ form.condition }}
+                                    </div>
+
+
+                                    <div class="form-group mb-3">
+                                        <label class="control-label">Price</label>
+                                        {{ form.price }}
+                                    </div>
+
+                                    <div class="form-group md-3">
+                                        <label>Upload Images</label>
+                                        {{ formset.management_form }}
+                                        {% for form in formset %}
+                                        <div class="mb-2">{{ form.image }}</div>
+                                        {% endfor %}
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button class="btn btn-common log-btn" type="submit">Add Product</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock header %}
+{% block content %}
+
+{% endblock content %}

@@ -75,7 +75,51 @@ def product_add(request):
         "formset":formset
 
     }
-    return render(request,'product_add.html',ctx)
+    return render(request,'user_dashboard/product_add.html',ctx)
+
+def dashboard(request):
+    ctx = {
+
+    }
+    return render(request,'user_dashboard/dashboard.html')
+
+def my_ads(request):
+    ctx = {
+
+    }
+    return render(request,'user_dashboard/account-myads.html')
+
+
+
+
+def messages(request):
+    ctx = {
+
+    }
+    return render(request,'user_dashboard/offermessages.html')
+
+
+def payment(request):
+    ctx = {
+
+    }
+    return render(request,'user_dashboard/payments.html')
+
+
+
+def favourite(request):
+    ctx = {
+
+    }
+    return render(request,'user_dashboard/account-favourite-ads.html')
+
+
+
+def user_setting(request):
+    ctx = {
+
+    }
+    return render(request,'user_dashboard/privacy-setting.html')
 
 
 

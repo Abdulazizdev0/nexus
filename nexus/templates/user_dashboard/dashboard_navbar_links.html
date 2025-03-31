@@ -58,7 +58,7 @@
                         {% else %}
                         <a href="{% url 'login'%}" class="header-top-button"><i class="lni-lock"></i> Log In</a> |
                         <a href="{% url 'register' %}" class="header-top-button"><i class="lni-pencil"></i> Register</a>
-                        {% endif  %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -83,13 +83,13 @@
                 <ul class="navbar-nav mr-auto w-100 justify-content-center">
                     {% if main == 'main' %}
                     <li class="nav-item active">
-                        <a class="nav-link dropdown-toggle" href="{% url 'main' %}" >
+                        <a class="nav-link dropdown-toggle" href="{% url 'main' %}">
                             Home
                         </a>
                     </li>
                     {% else %}
-                      <li class="nav-item ">
-                        <a class="nav-link dropdown-toggle" href="{% url 'main' %}" >
+                    <li class="nav-item ">
+                        <a class="nav-link dropdown-toggle" href="{% url 'main' %}">
                             Home
                         </a>
                     </li>
@@ -100,44 +100,44 @@
                         </a>
 
                     </li>
-<!--                    <li class="nav-item dropdown">-->
-<!--                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"-->
-<!--                           aria-expanded="false">-->
-<!--                            Listings-->
-<!--                        </a>-->
-<!--                        <div class="dropdown-menu">-->
-<!--                            <a class="dropdown-item" href="adlistinggrid.html">Ad Grid</a>-->
-<!--                            <a class="dropdown-item" href="adlistinglist.html">Ad Listing</a>-->
-<!--                            <a class="dropdown-item" href="ads-details.html">Listing Detail</a>-->
-<!--                        </div>-->
-<!--                    </li>-->
+                    <!--                    <li class="nav-item dropdown">-->
+                    <!--                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"-->
+                    <!--                           aria-expanded="false">-->
+                    <!--                            Listings-->
+                    <!--                        </a>-->
+                    <!--                        <div class="dropdown-menu">-->
+                    <!--                            <a class="dropdown-item" href="adlistinggrid.html">Ad Grid</a>-->
+                    <!--                            <a class="dropdown-item" href="adlistinglist.html">Ad Listing</a>-->
+                    <!--                            <a class="dropdown-item" href="ads-details.html">Listing Detail</a>-->
+                    <!--                        </div>-->
+                    <!--                    </li>-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false">
                             Services
                         </a>
-<!--                        <div class="dropdown-menu">-->
-<!--                            <a class="dropdown-item" href="about.html">About Us</a>-->
-<!--                            <a class="dropdown-item" href="services.html">Services</a>-->
-<!--                            <a class="dropdown-item" href="ads-details.html">Ads Details</a>-->
-<!--                            <a class="dropdown-item" href="product_add.html">Ads Post</a>-->
-<!--                            <a class="dropdown-item" href="pricing.html">Packages</a>-->
-<!--                            <a class="dropdown-item" href="testimonial.html">Testimonial</a>-->
-<!--                            <a class="dropdown-item" href="faq.html">FAQ</a>-->
-<!--                            <a class="dropdown-item" href="404.html">404</a>-->
-<!--                        </div>-->
+                        <!--                        <div class="dropdown-menu">-->
+                        <!--                            <a class="dropdown-item" href="about.html">About Us</a>-->
+                        <!--                            <a class="dropdown-item" href="services.html">Services</a>-->
+                        <!--                            <a class="dropdown-item" href="ads-details.html">Ads Details</a>-->
+                        <!--                            <a class="dropdown-item" href="product_add.html">Ads Post</a>-->
+                        <!--                            <a class="dropdown-item" href="pricing.html">Packages</a>-->
+                        <!--                            <a class="dropdown-item" href="testimonial.html">Testimonial</a>-->
+                        <!--                            <a class="dropdown-item" href="faq.html">FAQ</a>-->
+                        <!--                            <a class="dropdown-item" href="404.html">404</a>-->
+                        <!--                        </div>-->
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false">
                             Blog
                         </a>
-<!--                        <div class="dropdown-menu">-->
-<!--                            <a class="dropdown-item" href="blog.html">Blog - Right Sidebar</a>-->
-<!--                            <a class="dropdown-item" href="blog-left-sidebar.html">Blog - Left Sidebar</a>-->
-<!--                            <a class="dropdown-item" href="blog-grid-full-width.html"> Blog full width </a>-->
-<!--                            <a class="dropdown-item" href="single-post.html">Blog Details</a>-->
-<!--                        </div>-->
+                        <!--                        <div class="dropdown-menu">-->
+                        <!--                            <a class="dropdown-item" href="blog.html">Blog - Right Sidebar</a>-->
+                        <!--                            <a class="dropdown-item" href="blog-left-sidebar.html">Blog - Left Sidebar</a>-->
+                        <!--                            <a class="dropdown-item" href="blog-grid-full-width.html"> Blog full width </a>-->
+                        <!--                            <a class="dropdown-item" href="single-post.html">Blog Details</a>-->
+                        <!--                        </div>-->
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">
@@ -147,9 +147,10 @@
                 </ul>
                 {% if user.is_authenticated %}
                 <div class="post-btn">
-                    <a class="btn btn-common" href="{% url 'product_add' %}"><i class="lni-pencil-alt"></i> Post an Ad</a>
+                    <a class="btn btn-common" href="{% url 'product_add' %}"><i class="lni-pencil-alt"></i> Post an
+                        Ad</a>
                 </div>
-                {%  else %}
+                {% else %}
                 <div class="post-btn">
                     <a class="btn btn-common" href="{% url 'register' %}"><i class="lni-pencil-alt"></i> Post an Ad</a>
                 </div>
@@ -208,10 +209,71 @@
     {% endblock header %}
 
 </header>
-{% block content %}
-{% endblock content %}
+
+
+<nav class="navdashboard">
+     {% block navbar %}
+    {% endblock navbar %}
+
+    <ul>
+        <li>
+            <a href="dashboard.html">
+                <i class="lni-dashboard"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="account-profile-setting.html">
+                <i class="lni-cog"></i>
+                <span>Profile Settings</span>
+            </a>
+        </li>
+        <li>
+            <a href="account-myads.html">
+                <i class="lni-layers"></i>
+                <span>My Ads</span>
+            </a>
+        </li>
+        <li>
+            <a href="offermessages.html">
+                <i class="lni-envelope"></i>
+                <span>Offers/Messages</span>
+            </a>
+        </li>
+        <li>
+            <a href="payments.html">
+                <i class="lni-wallet"></i>
+                <span>Payments</span>
+            </a>
+        </li>
+        <li>
+            <a href="account-favourite-ads.html">
+                <i class="lni-heart"></i>
+                <span>My Favourites</span>
+            </a>
+        </li>
+        <li>
+            <a class="active" href="privacy-setting.html">
+                <i class="lni-star"></i>
+                <span>Privacy Settings</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="lni-enter"></i>
+                <span>Logout</span>
+            </a>
+        </li>
+    </ul>
+
+
+</nav>
+
+
 
 <footer>
+    {% block content %}
+    {% endblock content %}
 
     <section class="footer-Content">
         <div class="container">
