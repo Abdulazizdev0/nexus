@@ -486,7 +486,8 @@
             Blog Post
         </h2>
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
+            {% for blog in blogs %}
+                <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
 
                 <div class="blog-item-wrapper">
                     <div class="blog-item-img">
@@ -497,73 +498,19 @@
                     <div class="blog-item-text">
                         <div class="meta-tags">
                             <span class="user float-left"><a href="#"><i
-                                    class="lni-user"></i> Posted By Admin</a></span>
-                            <span class="date float-right"><i class="lni-calendar"></i> 24 May, 2018</span>
+                                    class="lni-user"></i>{{ blog.author }}</a></span>
+                            <span class="date float-right"><i class="lni-calendar"></i>{{ blog.created_at|date:"F d" }}</span>
                         </div>
                         <h3>
-                            <a href="single-post.html">Recently Launching Our Iphone X</a>
+                            <a href="single-post.html">{{ blog.title }}</a>
                         </h3>
-                        <p>
-                            Reprehenderit nemo quod tempore doloribus ratione distinctio quis quidem vitae sunt
-                            reiciendis, molestias omnis soluta.
-                        </p>
+                        <p>{{ blog.description|slice:":130" }}....</p>
                         <a href="single-post.html" class="btn btn-common">Read More</a>
                     </div>
                 </div>
 
             </div>
-            <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
-
-                <div class="blog-item-wrapper">
-                    <div class="blog-item-img">
-                        <a href="single-post.html">
-                            <img src="assets/img/blog/img-2.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="blog-item-text">
-                        <div class="meta-tags">
-                            <span class="user float-left"><a href="#"><i
-                                    class="lni-user"></i> Posted By Admin</a></span>
-                            <span class="date float-right"><i class="lni-calendar"></i> 24 May, 2018</span>
-                        </div>
-                        <h3>
-                            <a href="single-post.html">How to get more ad views</a>
-                        </h3>
-                        <p>
-                            Reprehenderit nemo quod tempore doloribus ratione distinctio quis quidem vitae sunt
-                            reiciendis, molestias omnis soluta.
-                        </p>
-                        <a href="single-post.html" class="btn btn-common">Read More</a>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
-
-                <div class="blog-item-wrapper">
-                    <div class="blog-item-img">
-                        <a href="single-post.html">
-                            <img src="assets/img/blog/img-3.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="blog-item-text">
-                        <div class="meta-tags">
-                            <span class="user float-left"><a href="#"><i
-                                    class="lni-user"></i> Posted By Admin</a></span>
-                            <span class="date float-right"><i class="lni-calendar"></i> 24 May, 2018</span>
-                        </div>
-                        <h3>
-                            <a href="single-post.html">Writing a better product description</a>
-                        </h3>
-                        <p>
-                            Reprehenderit nemo quod tempore doloribus ratione distinctio quis quidem vitae sunt
-                            reiciendis, molestias omnis soluta.
-                        </p>
-                        <a href="single-post.html" class="btn btn-common">Read More</a>
-                    </div>
-                </div>
-
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

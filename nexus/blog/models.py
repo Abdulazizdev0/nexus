@@ -18,10 +18,14 @@ class Blog(models.Model):
     title = models.CharField(max_length=200,null=False,blank=False)
     description = models.TextField(null=False,blank=False)
     category = models.ForeignKey(BlogCategory,on_delete=models.SET_NULL, null=True, blank=False)
-    image = models.ImageField(upload_to='')
+    image = models.ImageField(upload_to='blog_images')
     created_at = models.DateTimeField(auto_now=True, editable=False)
 
     def __str__(self):
         return self.title
+
+class BlogView(models.Model):
+    product = models.OneToOneField(Blog, on_delete=models.CASCADE)
+    view_count = models.IntegerField(default=0)
 
 

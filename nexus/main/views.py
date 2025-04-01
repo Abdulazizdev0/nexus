@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from category.models import *
 from product.models import *
+from blog.models import Blog
 from django.db.models import Prefetch
 from hitcount.views import HitCountDetailView, HitCountMixin
 from hitcount.utils import get_hitcount_model
@@ -20,11 +21,13 @@ def main(request):
         hit_count_response = HitCountMixin.hit_count(request, hit_count)  # Har bir mahsulot uchun hitni oshiramiz
         if hit_count_response.hit_counted:
             hits[product.id] += 1
+    blogs = Blog.objects.all()
     ctx = {
         "categories": categories,
         "regions":regions,
         "products":products,
-        "hits":hits
+        "hits":hits,
+        "blogs":blogs
 
     }
 
