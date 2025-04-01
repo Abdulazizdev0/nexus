@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'category',
     'product',
     'user',
-    'hitcount'
+    'hitcount',
+    'blog',
 
 
 ]

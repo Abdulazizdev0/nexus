@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.db.models import Prefetch
 from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
 from .models import *
 from hitcount.views import HitCountDetailView, HitCountMixin
 from hitcount.utils import get_hitcount_model
@@ -33,15 +34,24 @@ def product_list(request,):
 def product_detail(request,pk):
     product = Product.objects.get(pk=pk)
     images = product.images.all()
-    hit_count = get_hitcount_model().objects.get_for_object(product)
-    hits = hit_count.hits
-    hit_count_response = HitCountMixin.hit_count(request,hit_count)
-    if hit_count_response.hit_counted:
-        hits += 1
+    product = get_object_or_404(Product, pk=pk)
+    product_view, created = ProductView.objects.get_or_create(product=product)
+    product_key = f'viewed_product_{pk}'
+    if not request.session.get(product_key, False):
+        product_view, created = ProductView.objects.get_or_create(product=product)
+        product_view.view_count += 1
+        product_view.save()
+        request.session[product_key] = True
+    # hit_count = get_hitcount_model().objects.get_for_object(product)
+    # hits = hit_count.hits
+    # hit_count_response = HitCountMixin.hit_count(request,hit_count)
+    # if hit_count_response.hit_counted:
+    #     hits += 1
     ctx = {
         "product":product,
         "images":images,
-        "hits":hits
+        'view_count': product_view.view_count
+        # "hits":hits
 
     }
     return render(request,'detail.html',ctx)
