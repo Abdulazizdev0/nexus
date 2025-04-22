@@ -18,9 +18,9 @@ def main(request):
     hits = {}
     for product in products:
         hit_count = get_hitcount_model().objects.get_for_object(product)
-        hits[product.id] = hit_count.hits  # Har bir mahsulot uchun hitcount saqlaymiz
+        hits[product.id] = hit_count.hits
 
-        hit_count_response = HitCountMixin.hit_count(request, hit_count)  # Har bir mahsulot uchun hitni oshiramiz
+        hit_count_response = HitCountMixin.hit_count(request, hit_count)
         if hit_count_response.hit_counted:
             hits[product.id] += 1
     blogs = Blog.objects.all()
