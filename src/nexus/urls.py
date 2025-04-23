@@ -24,6 +24,7 @@ from api.category import urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
+    path('category/', include('category.urls')),
     path('product/', include('product.urls')),
     path('api/', include('api.urls')),
     path('user/', include('user.urls')),
