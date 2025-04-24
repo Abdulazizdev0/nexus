@@ -47,5 +47,13 @@ def category(request):
 
 
 
+def services(request):
+    ctx = {
+
+    }
+    return render(request,'services.html',ctx)
+
+
+
 
 

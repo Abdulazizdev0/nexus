@@ -18,12 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from main.views import services
 from blog.views import blog_page
 from api.category import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
+    path('services/',services,name='services'),
     path('category/', include('category.urls')),
     path('product/', include('product.urls')),
     path('api/', include('api.urls')),

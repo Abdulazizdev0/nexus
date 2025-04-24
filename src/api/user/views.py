@@ -1,30 +1,27 @@
-from user.models import User,Profile
+from rest_framework.decorators import permission_classes
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import ProfileSerializer
-from django.http import HttpResponse
-from rest_framework.decorators import api_view,permission_classes
 from rest_framework.permissions import IsAuthenticated
+from user.models import Profile
+from .serializers import ProfileSerializer
+from rest_framework.permissions import AllowAny
+from rest_framework.views import APIView
+from typing import Any
+from django.shortcuts import get_object_or_404
 
 
 
-@api_view(['GET','POST'])
-@permission_classes([IsAuthenticated])
-def get_list_user(request):
-    if request.method == "GET":
+
+class UserView(APIView):
+    permission_classes: list[Any] = [AllowAny]
+    def get(self,request):
         profile = Profile.objects.all()
-        result = ProfileSerializer(profile,many=True)
-        print(result.data)
-        return Response({"data":result.data})
+        serializer = ProfileSerializer(profile, many=True)
+        return Response({"data": serializer.data})
 
-    elif request.method == "POST":
-        if not request.user.is_authenticated:
-            return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
+    def post(self,request):
         serializer = ProfileSerializer(data=request.data)
-        print(serializer,serializer.is_valid())
         if serializer.is_valid():
-            result = serializer.save(user=request.user)
-            print(result)
-            return Response({'data':"success"},status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            serializer.save(user=request.user)
+            return Response({'data': "success"}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
