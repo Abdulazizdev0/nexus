@@ -32,8 +32,6 @@ def main(request):
         "blogs":blogs
 
     }
-
-
     return render(request, 'index.html', ctx)
 
 def category(request):
@@ -52,6 +50,15 @@ def services(request):
 
     }
     return render(request,'services.html',ctx)
+
+
+
+def contact(request):
+    ctx = {
+
+    }
+    return render(request,'contact.html',ctx)
+
 
 
 
