@@ -6,6 +6,8 @@ from django.http import HttpResponse
 from rest_framework.permissions import AllowAny
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
+from rest_framework.routers import DefaultRouter
+
 
 
 
@@ -53,3 +55,4 @@ def detail_ctg(request,pk):
     elif request.method == "DELETE":
         category.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+

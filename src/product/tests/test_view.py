@@ -11,3 +11,7 @@ def test_product_list(client):
     category1 = Category.objects.create(name='Tech', is_main=True, slug='Tech')
     region1 = Region.objects.create(name='Sclotland',sorting='99'),
     region2 = Region.objects.create(name='New Zelland',sorting='88'),
+
+
+    category = Category.objects.create(name='Optik anjomlar',is_main=True,slug='Optik anjomlar'),
+    region = Region.objects.create(name='Canada',sorting='44'),

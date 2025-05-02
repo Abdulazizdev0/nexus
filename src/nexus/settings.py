@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'hitcount',
     'blog',
     'rest_framework',
-    'api'
+    'api',
+    'rest_framework_simplejwt',
 
 
 ]
@@ -125,6 +126,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
 
 
